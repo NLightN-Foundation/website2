@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Outscore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 50%, #F3EDFF 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 217, 61, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contact-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        /* Chatbot CTA Section */
+        .chatbot-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
+        }
+
+        .chatbot-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.8) 100%);
+            border-radius: 24px;
+            box-shadow: var(--hero-card-shadow);
+            padding: var(--spacing-xl);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 2px solid rgba(255, 217, 61, 0.2);
+        }
+
+        .chatbot-icon {
+            font-size: 5rem;
+            margin-bottom: var(--spacing-md);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        .chatbot-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .chatbot-description {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        .chatbot-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1.25rem 3rem;
+            background: var(--gradient-orange);
+            color: var(--bg-white);
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .chatbot-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
+        }
+
+        .chatbot-button-icon {
+            font-size: 1.5rem;
+        }
+
+        .chatbot-note {
+            margin-top: var(--spacing-md);
+            font-size: 0.9375rem;
+            color: var(--text-light);
+        }
+
+        /* Alternative Contact Methods */
+        .alternative-contact {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, #F3EDFF 0%, #FFF9E6 100%);
+        }
+
+        .alternative-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-method-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.5) 100%);
+            border-radius: 16px;
+            padding: var(--spacing-lg);
+            text-align: center;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--purple-color);
+        }
+
+        .contact-method-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contact-method-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .contact-method-info {
+            font-size: 1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-method-info a {
+            color: var(--orange-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-method-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Company Details Section */
+        .company-details {
+            padding: var(--spacing-xl) 0;
+            background: var(--bg-white);
+        }
+
+        .company-card {
+            background: linear-gradient(135deg, #2D1B69 0%, #4A2C8A 100%);
+            border-radius: 24px;
+            padding: var(--spacing-xl);
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .company-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+
+        .company-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .company-info-item {
+            text-align: center;
+        }
+
+        .company-info-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: var(--spacing-xs);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .company-info-value {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--bg-white);
+            line-height: 1.5;
+        }
+
+        .company-info-value a {
+            color: var(--yellow-color);
+            text-decoration: none;
+        }
+
+        .company-info-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-title {
+                font-size: 2.25rem;
+            }
+
+            .chatbot-card {
+                padding: var(--spacing-lg);
+            }
+
+            .chatbot-button {
+                padding: 1rem 2rem;
+                font-size: 1.125rem;
+            }
+
+            .company-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Outscore</a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#courses" class="nav-link">Courses</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="contact-container">
+            <h1 class="contact-title">We're Here to Help</h1>
+            <p class="contact-subtitle">
+                Have questions about our courses or want to learn how Outscore can help your child excel? 
+                Chat with us instantly or reach out through any of the methods below.
+            </p>
+        </div>
+    </section>
+
+    <!-- Chatbot CTA Section -->
+    <section class="chatbot-section">
+        <div class="container">
+            <div class="chatbot-card">
+                <div class="chatbot-icon">💬</div>
+                <h2 class="chatbot-title">Chat With Us Now</h2>
+                <p class="chatbot-description">
+                    Get instant answers to your questions about courses, pricing, enrollment, 
+                    and how Outscore can help your child succeed in their 10th standard exams.
+                </p>
+                <button class="chatbot-button" id="openChatbot" onclick="openChatbot()">
+                    <span class="chatbot-button-icon">🤖</span>
+                    Start Chat Now
+                </button>
+                <p class="chatbot-note">
+                    Available 24/7 • Get instant responses • No waiting
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alternative Contact Methods -->
+    <section class="alternative-contact">
+        <div class="container">
+            <h3 class="alternative-title">Other Ways to Reach Us</h3>
+            <div class="contact-methods">
+                <div class="contact-method-card">
+                    <div class="contact-method-icon">📧</div>
+                    <h4 class="contact-method-title">Email Us</h4>
+                    <p class="contact-method-info">
+                        <a href="mailto:info@nlightn.in">info@nlightn.in</a>
+                        <br>We respond within 24 hours
+                    </p>
+                </div>
+                <div class="contact-method-card">
+                    <div class="contact-method-icon">📞</div>
+                    <h4 class="contact-method-title">Call Us</h4>
+                    <p class="contact-method-info">
+                        <a href="tel:+919731296263">+91 97312 96263</a>
+                        <br>Mon-Sat, 9 AM - 7 PM
+                    </p>
+                </div>
+                <div class="contact-method-card">
+                    <div class="contact-method-icon">💬</div>
+                    <h4 class="contact-method-title">WhatsApp</h4>
+                    <p class="contact-method-info">
+                        <a href="https://wa.me/919731296263" target="_blank">+91 97312 96263</a>
+                        <br>Quick responses guaranteed
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Details Section -->
+    <section class="company-details">
+        <div class="container">
+            <div class="company-card">
+                <h3 class="company-title">Company Information</h3>
+                <div class="company-info-grid">
+                    <div class="company-info-item">
+                        <p class="company-info-label">Registered Company Name</p>
+                        <p class="company-info-value">
+                            <!-- UPDATE: Add your registered company name here -->
+                            [Your Registered Company Name Pvt. Ltd.]
+                        </p>
+                    </div>
+                    <div class="company-info-item">
+                        <p class="company-info-label">Email Address</p>
+                        <p class="company-info-value">
+                            <a href="mailto:info@nlightn.in">info@nlightn.in</a>
+                        </p>
+                    </div>
+                    <div class="company-info-item">
+                        <p class="company-info-label">Phone Number</p>
+                        <p class="company-info-value">
+                            <a href="tel:+919731296263">+91 97312 96263</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">Outscore</h4>
+                    <p class="footer-description">
+                        Trusted by thousands of parents to help their children excel in 10th standard board examinations.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#courses">Courses</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                        <li><a href="#" target="_blank">Twitter</a></li>
+                        <li><a href="#" target="_blank">Facebook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Tips for Parents</h4>
+                    <p class="footer-description">
+                        Get weekly tips on how to support your child's exam preparation and reduce their stress.
+                    </p>
+                    <form class="subscribe-form" id="subscribeForm">
+                        <input type="email" placeholder="Email Address *" required class="subscribe-input">
+                        <button type="submit" class="subscribe-button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Outscore. All rights reserved. | outscore.in</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Chatbot function - Update this with your actual chatbot integration
+        function openChatbot() {
+            // Option 1: Open a chatbot widget (e.g., Intercom, Tawk.to, Crisp, etc.)
+            // If you have a chatbot widget installed, it will typically have its own open function
+            // Example: Intercom('show');
+            // Example: Tawk_API.maximize();
+            // Example: $crisp.push(['do', 'chat:open']);
+            
+            // Option 2: Redirect to a chat page or WhatsApp
+            // window.open('https://wa.me/919876543210?text=Hi, I have a question about Outscore courses', '_blank');
+            
+            // Option 3: Show an alert (placeholder - replace with actual chatbot)
+            alert('Chatbot integration pending. Please update the openChatbot() function with your chatbot provider\'s code.\n\nFor now, you can reach us at:\nEmail: info@nlightn.in\nPhone: +91 97312 96263');
+        }
+    </script>
+</body>
+</html>
+

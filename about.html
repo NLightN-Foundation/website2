@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Outscore</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, #FFF9E6 0%, #FFFFFF 50%, #F3EDFF 100%);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 217, 61, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .about-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
+        }
+
+        .mission-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.8) 100%);
+            border-radius: 24px;
+            box-shadow: var(--hero-card-shadow);
+            padding: var(--spacing-xl);
+            max-width: 900px;
+            margin: 0 auto;
+            border: 2px solid rgba(255, 217, 61, 0.2);
+            text-align: center;
+        }
+
+        .mission-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .mission-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .mission-highlight {
+            background: var(--gradient-yellow);
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            margin-top: var(--spacing-md);
+        }
+
+        .mission-highlight-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            line-height: 1.6;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, #F3EDFF 0%, #FFF9E6 100%);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .experience-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.5) 100%);
+            border-radius: 20px;
+            padding: var(--spacing-lg);
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--purple-color);
+        }
+
+        .experience-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .experience-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .experience-label {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Founders Section */
+        .founders-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9E6 100%);
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .founder-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.8) 100%);
+            border-radius: 24px;
+            padding: var(--spacing-xl);
+            border: 2px solid rgba(255, 217, 61, 0.2);
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+            border-color: var(--yellow-color);
+        }
+
+        .founder-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .founder-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 3px solid var(--yellow-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-white);
+            position: relative;
+        }
+
+        .founder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .founder-name-title {
+            flex: 1;
+        }
+
+        .founder-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .founder-title {
+            font-size: 1rem;
+            color: var(--orange-color);
+            font-weight: 600;
+        }
+
+        .founder-bio {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .founder-highlights {
+            background: rgba(139, 92, 246, 0.1);
+            border-left: 4px solid var(--purple-color);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin-top: var(--spacing-md);
+        }
+
+        .founder-highlights-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .founder-highlights-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .founder-highlights-list li {
+            font-size: 0.9375rem;
+            color: var(--text-light);
+            padding: var(--spacing-xs) 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+
+        .founder-highlights-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--purple-color);
+            font-weight: bold;
+        }
+
+        /* Education Focus Section */
+        .education-focus-section {
+            padding: var(--spacing-xl) 0;
+            background: linear-gradient(135deg, #2D1B69 0%, #4A2C8A 100%);
+            color: var(--bg-white);
+        }
+
+        .education-focus-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 249, 230, 0.05) 100%);
+            border-radius: 24px;
+            padding: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .education-focus-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .education-focus-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .education-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: var(--spacing-md);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-org {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--yellow-color);
+        }
+
+        .timeline-role {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 2.25rem;
+            }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .founder-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+        .experience-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Past Work Section */
+    .past-work-section {
+        padding: var(--spacing-xl) 0;
+        background: linear-gradient(135deg, #F3EDFF 0%, #FFF9E6 100%);
+    }
+
+    .past-work-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-lg);
+    }
+
+    .past-work-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 249, 230, 0.8) 100%);
+        border-radius: 20px;
+        padding: var(--spacing-lg);
+        border: 2px solid rgba(139, 92, 246, 0.2);
+        transition: all 0.3s ease;
+        box-shadow: var(--box-shadow);
+    }
+
+    .past-work-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--box-shadow-hover);
+        border-color: var(--purple-color);
+    }
+
+    .past-work-icon {
+        font-size: 3rem;
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .past-work-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .past-work-subtitle {
+        font-size: 1rem;
+        color: var(--orange-color);
+        font-style: italic;
+        margin-bottom: var(--spacing-md);
+        font-weight: 500;
+    }
+
+    .past-work-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-color);
+        margin-bottom: var(--spacing-md);
+    }
+
+    .past-work-features {
+        background: rgba(139, 92, 246, 0.1);
+        border-left: 4px solid var(--purple-color);
+        padding: var(--spacing-md);
+        border-radius: 8px;
+        margin-top: var(--spacing-md);
+    }
+
+    .past-work-features-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .past-work-features-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .past-work-features-list li {
+        font-size: 0.9375rem;
+        color: var(--text-light);
+        padding: var(--spacing-xs) 0;
+        padding-left: 1.25rem;
+        position: relative;
+    }
+
+    .past-work-features-list li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--purple-color);
+        font-weight: bold;
+    }
+
+    .past-work-impact {
+        margin-top: var(--spacing-md);
+        padding: var(--spacing-sm);
+        background: var(--gradient-yellow);
+        border-radius: 8px;
+    }
+
+    .past-work-impact-text {
+        font-size: 0.9375rem;
+        color: var(--primary-color);
+        font-weight: 500;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .past-work-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Outscore</a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#courses" class="nav-link">Courses</a>
+                <a href="about.html" class="nav-link active">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- About Hero -->
+    <section class="about-hero">
+        <div class="about-container">
+            <h1 class="about-title">About Outscore</h1>
+            <p class="about-subtitle">
+                Founded by education veterans with over two decades of experience in transforming 
+                learning outcomes through technology and AI. We combine deep educational expertise 
+                with cutting-edge AI to help every child succeed.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-card">
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="mission-text">
+                    At Outscore, we believe that every child deserves personalized, high-quality 
+                    education that adapts to their unique learning style. Our mission is to make 
+                    AI-powered exam preparation accessible to all students, helping them achieve 
+                    their full potential in board examinations.
+                </p>
+                <div class="mission-highlight">
+                    <p class="mission-highlight-text">
+                        We've been using AI for education long before it became mainstream. 
+                        Our expertise comes from real-world experience transforming learning 
+                        outcomes for thousands of students.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Our Experience in Education</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon">📚</div>
+                    <div class="experience-number">20+</div>
+                    <div class="experience-label">Years in Education Industry</div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-icon">🎓</div>
+                    <div class="experience-number">2,500+</div>
+                    <div class="experience-label">Students Impacted</div>
+                </div>
+                <div class="experience-card">
+                    <div class="experience-icon">🤖</div>
+                    <div class="experience-number">6,000+</div>
+                    <div class="experience-label">Hours of AI Development</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="founders-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Founders</h2>
+            <div class="founders-grid">
+                <!-- Founder 1: Sreekanth -->
+                <div class="founder-card">
+                    <div class="founder-header">
+                        <div class="founder-avatar">
+                            <img src="images/sreekanth_headshot.jpg" alt="Sreekanth Sreedharan">
+                        </div>
+                        <div class="founder-name-title">
+                            <h3 class="founder-name">Sreekanth Sreedharan</h3>
+                            <p class="founder-title">Co-Founder & CEO</p>
+                        </div>
+                    </div>
+                    <p class="founder-bio">
+                        With 15+ years in program management and AI applications, Sreekanth brings 
+                        a unique combination of technical expertise and educational passion. An MBA 
+                        from IIM Ahmedabad and B.Tech. from College of Engineering, Thiruvananthapuram, 
+                        he has extensive experience in the education sector at Wipro CSR and Azim Premji 
+                        Foundation. Co-founded Iksula with 6,000+ hours hands-on coding in GenAI applications. 
+                        Former roles at TCS, eBay, and Azim Premji Foundation. A pioneer in using AI for 
+                        educational good.
+                    </p>
+                </div>
+
+                <!-- Founder 2: Sreenath -->
+                <div class="founder-card">
+                    <div class="founder-header">
+                        <div class="founder-avatar">
+                            <img src="images/Sreenath_headshot.jpg" alt="Sreenath Manickom">
+                        </div>
+                        <div class="founder-name-title">
+                            <h3 class="founder-name">Sreenath Manickom</h3>
+                            <p class="founder-title">Co-Founder & CTO</p>
+                        </div>
+                    </div>
+                    <p class="founder-bio">
+                        Sreenath brings deep expertise in GenAI applications, quality assurance, and 
+                        user experience. With 15+ years at Volvo spanning India and US operations, 
+                        he specializes in GenAI application development, quality assurance, and 
+                        operational excellence. His focus on user experience ensures our platform 
+                        is intuitive and effective for both students and parents. Expert in client 
+                        requirements and user-centric design.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Work in Education Section -->
+    <section class="past-work-section">
+        <div class="container">
+            <h2 class="section-title">Our Past Work in Education</h2>
+            <p style="text-align: center; font-size: 1.125rem; color: var(--text-light); max-width: 800px; margin: 0 auto var(--spacing-lg); line-height: 1.7;">
+                Our founders have been building AI-powered educational solutions long before Outscore. 
+                Here are some of our past projects that demonstrate our commitment to using AI for 
+                educational good and increasing access to quality learning.
+            </p>
+            <div class="past-work-grid">
+                <!-- Project 1: Spoken English Coach -->
+                <div class="past-work-card">
+                    <div class="past-work-icon">🗣️</div>
+                    <h3 class="past-work-title">AI-Based Spoken English Coach</h3>
+                    <p class="past-work-subtitle">Personalized language learning for 6,000 rural scholarship students</p>
+                    <p class="past-work-description">
+                        Created an AI-driven mobile app that assesses pronunciation, grammar, and fluency, 
+                        integrated with Moodle for seamless progress tracking and certification. This 
+                        solution increased affordability and access to quality English language education 
+                        for underserved communities.
+                    </p>
+                    <div class="past-work-impact">
+                        <p class="past-work-impact-text">
+                            <strong>Impact:</strong> Gave rural scholarship students a voice and confidence 
+                            through personalized, judgment-free language practice. Integrated seamlessly into 
+                            existing academic workflows, demonstrating that AI can be a compassionate coach 
+                            in underserved communities.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Project 2: AI-Enabled L&D Platform -->
+                <div class="past-work-card">
+                    <div class="past-work-icon">📚</div>
+                    <h3 class="past-work-title">AI-Enabled L&D Platform</h3>
+                    <p class="past-work-subtitle">Micro-learning and instant evaluation for distributed workforces</p>
+                    <p class="past-work-description">
+                        Launched a WhatsApp-native learning platform delivering bite-sized training modules 
+                        with AI-graded assessments. This innovative approach made learning accessible and 
+                        affordable through a familiar platform, reaching learners where they already are.
+                    </p>
+                    <div class="past-work-impact">
+                        <p class="past-work-impact-text">
+                            <strong>Impact:</strong> Made learning accessible, bite-sized and fun via WhatsApp - 
+                            fitting training into busy workdays. Improved knowledge retention and application 
+                            through instant, contextual feedback. Proved that L&D can thrive outside traditional 
+                            platforms, inspiring new approaches to workforce enablement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 class="footer-title">Outscore</h4>
+                    <p class="footer-description">
+                        Trusted by thousands of parents to help their children excel in 10th standard board examinations.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#courses">Courses</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" target="_blank">LinkedIn</a></li>
+                        <li><a href="#" target="_blank">Twitter</a></li>
+                        <li><a href="#" target="_blank">Facebook</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 class="footer-title">Tips for Parents</h4>
+                    <p class="footer-description">
+                        Get weekly tips on how to support your child's exam preparation and reduce their stress.
+                    </p>
+                    <form class="subscribe-form" id="subscribeForm">
+                        <input type="email" placeholder="Email Address *" required class="subscribe-input">
+                        <button type="submit" class="subscribe-button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Outscore. All rights reserved. | outscore.in</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
